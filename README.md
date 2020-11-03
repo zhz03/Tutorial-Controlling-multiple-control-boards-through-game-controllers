@@ -73,7 +73,7 @@ There are 5 main programs that people should care about:
 
 The wiring of this whole system is shown as follows:
 
-![](/pics/wiring.jpg)
+![](/pics/wiring.JPG)
 
 ## 6 Process in details 
 
