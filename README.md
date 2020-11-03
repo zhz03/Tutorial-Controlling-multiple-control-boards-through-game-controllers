@@ -189,6 +189,34 @@ There are four main steps:
     ```
 
     The example code is in the *Esp8266_master_single* folder.  
+  
+  - If you need to talk to multiple slave boards, then in the setup function, use the following code:
+  
+    ```c
+      esp_now_add_peer(broadcastAddress1, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+      esp_now_add_peer(broadcastAddress2, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
+    ```
+  
+    In the loop function, use the following code to switch between different devices:
+  
+    ```
+      state = Serial.read() - '0';
+        if (state == 0)
+        {  
+          esp_now_send(0, (uint8_t *) &myData, sizeof(myData));
+        }
+        else if (state == 1)
+        {
+          esp_now_send(broadcastAddress1, (uint8_t *) &myData, sizeof(myData));
+        }
+    
+        else if (state == 2)
+        {
+          esp_now_send(broadcastAddress2, (uint8_t *) &myData, sizeof(myData));
+        }
+    ```
+  
+    The example code can be found in the *Esp8266_master_multiple* folder
 
 #### (2) Slave board:
 
