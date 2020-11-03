@@ -154,7 +154,7 @@ There are four main steps:
 
 ### 6.3 Upload program to edge devices
 
-#### (1) Master part:
+#### (1) Master board:
 
 - Modify *Esp8266_master.ino* code to suit your needs:
 
@@ -166,7 +166,7 @@ There are four main steps:
 
     Your MAC address should be formatted like "FF:FF:FF:FF:FF:FF", put that into the above code where FF is.
 
-  -  If you need to control multiple slave boards, add more MAC address:
+  -  If you need to control **multiple** slave boards, add more MAC address:
 
     ```C
     uint8_t broadcastAddress1[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
@@ -176,7 +176,7 @@ There are four main steps:
     uint8_t broadcastAddressn[] = {0xFF, 0xFF, 0xFF, 0xFF, 0xFF, 0xFF};
     ```
 
-  - If you want to talk to only one slave board, then in the setup function of arduino program, use the following code:
+  - If you want to talk to only **one** slave board, then in the setup function of arduino program, use the following code:
 
     ```C
     esp_now_add_peer(broadcastAddress1, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
@@ -188,9 +188,27 @@ There are four main steps:
     esp_now_send(broadcastAddress1, (uint8_t *) &myData, sizeof(myData));
     ```
 
-    The example code is here.  
+    The example code is in the *Esp8266_master_single* folder.  
 
+#### (2) Slave board:
 
+- Modify the OnDataRecv function in the arduino program and control the slave board to let it do the corresponding action as we send data.
+
+### 6.4 Operation and execution
+
+- Modify *Joystick.py* to feed our needs:
+
+  - Change the serial port name to the one that current NodeMCU is using:
+
+    ```c
+    serial_port = serial.Serial("COM9",115200)
+    ```
+
+    For example, "COM9" to "COM20". To check the port name, go to Arduino IDE>Tools>Port: "COM20"
+
+- Plug in game controller
+
+- Run *Joystick.py* in the terminal 
 
 
 
