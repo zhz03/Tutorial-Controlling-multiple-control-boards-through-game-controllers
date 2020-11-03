@@ -33,6 +33,12 @@ The overall process flowchart:
 
 ## 3 Program structure and introduction
 
+To use the code I introduce below, please first clone this git to your local computers:
+
+```
+git clone https://github.com/zhz03/Tutorial-Controlling-multiple-control-boards-through-game-controllers
+```
+
 There are 5 main programs that people should care about:
 
 - Controller mapping program: *controller_test.py*
