@@ -4,17 +4,17 @@ Authors: Parth Agrawal(parthagrawal24@g.ucla.edu), Zhaoliang Zheng(zhz03@g.ucla.
 
 ## Content
 
-[1 Motivation](# 1 Motivation)
+* [1 Motivation](#1 Motivation)
 
-[2 Overview](# 2 Overview)
+* [2 Overview](#2 Overview)
 
-[3 Program structure and introduction](# 3 Program structure and introduction)
+* [3 Program structure and introduction](#3 Program structure and introduction)
 
-[4 Requirements](# 4 Requirements)
+* [4 Requirements](#4 Requirements)
 
-[5 Wiring](# 5 Wiring)
+* [5 Wiring](#5 Wiring)
 
-[6 Process in details](# 6 Process in details)
+* [6 Process in details](#6 Process in details)
 
 ## 1 Motivation
 
