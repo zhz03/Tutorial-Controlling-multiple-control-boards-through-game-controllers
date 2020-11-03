@@ -8,7 +8,7 @@ Authors: Parth Agrawal(parthagrawal24@g.ucla.edu), Zhaoliang Zheng(zhz03@g.ucla.
 
 * [2 Overview](#2-Overview)
 
-* [3 Program structure and introduction](#3-Program structure and introduction)
+* [3 Program structure and introduction](#3-Program-structure-and-introduction)
 
 * [4 Requirements](#4-Requirements)
 
