@@ -11,8 +11,8 @@ serial_port = serial.Serial(PORT,115200)
 serial_port.close()
 serial_port.open()
 
-control = 0
-PWM = 0
+control = 1
+PWM = 1
 x_horizontal = 0
 y_horizontal = 0
 x_vertical = 0
