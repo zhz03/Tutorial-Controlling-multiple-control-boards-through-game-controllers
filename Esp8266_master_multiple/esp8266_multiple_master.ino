@@ -3,20 +3,22 @@
 #include <espnow.h>
 
 // REPLACE WITH RECEIVER MAC Address
-uint8_t broadcastAddress1[] = {0x8C, 0xAA, 0xB5, 0x8C, 0xA4, 0x4C};
+uint8_t broadcastAddress1[] = {0x40, 0xF5, 0x20, 0x0A, 0x8A, 0x82};
 uint8_t broadcastAddress2[] = {0x48, 0x3F, 0xDA, 0x0C, 0xE0, 0xAE};
 // Structure example to send data
 // Must match the receiver structure
+
 typedef struct struct_message {
-  int x;
-  int y;
+  int x_hor;
+  int y_hor;
+  int x_ver;
+  int y_ver;
+  int pwm;
 } struct_message;
 
 // Create a struct_message called test to store variables to be sent
 struct_message myData;
 int state;
-unsigned long lastTime = 0;  
-unsigned long timerDelay = 2000;  // send readings timer
 
 // Callback when data is sent
 void OnDataSent(uint8_t *mac_addr, uint8_t sendStatus) {
@@ -63,21 +65,29 @@ void setup() {
 void loop() {
   if (Serial.available() > 0)
   {
-  myData.x = Serial.read() - '0';
+  myData.x_hor = Serial.read() - '0';
   delay(10);
-  myData.y = Serial.read() - '0';
+  myData.y_hor = Serial.read() - '0';
+  delay(10);
+  myData.x_ver = Serial.read() - '0';
+  delay(10);
+  myData.y_ver = Serial.read() - '0';
   delay(10);
   state = Serial.read() - '0';
-    if (state == 0)
+  delay(10);
+  myData.pwm = Serial.read() - '0';
+  delay(10);
+  
+    if (state == 1)
     {  
       esp_now_send(0, (uint8_t *) &myData, sizeof(myData));
     }
-    else if (state == 1)
+    else if (state == 2)
     {
       esp_now_send(broadcastAddress1, (uint8_t *) &myData, sizeof(myData));
     }
 
-    else if (state == 2)
+    else if (state == 3)
     {
       esp_now_send(broadcastAddress2, (uint8_t *) &myData, sizeof(myData));
     }
