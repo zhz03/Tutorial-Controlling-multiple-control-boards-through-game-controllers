@@ -3,13 +3,19 @@
 #include <espnow.h>
 
 // REPLACE WITH RECEIVER MAC Address
-uint8_t broadcastAddress1[] = {0x48, 0x3F, 0xDA, 0x0C, 0xE0, 0xAE};
+uint8_t broadcastAddress1[] = {0x40, 0xF5, 0x20, 0x0A, 0x8A, 0x82};
+
+// Control State
+int control;
 
 // Structure example to send data
 // Must match the receiver structure
 typedef struct struct_message {
-  int x;
-  int y;
+  int x_hor;
+  int y_hor;
+  int x_ver;
+  int y_ver;
+  int pwm;
 } struct_message;
 
 // Create a struct_message called test to store variables to be sent
@@ -57,14 +63,24 @@ void setup() {
   // Register peer
   esp_now_add_peer(broadcastAddress1, ESP_NOW_ROLE_SLAVE, 1, NULL, 0);
 }
+
  
 void loop() {
   if (Serial.available() > 0)
   {
-  myData.x = Serial.read() - '0';
+  myData.x_hor = Serial.read() - '0';
   delay(10);
-  myData.y = Serial.read() - '0';
+  myData.y_hor = Serial.read() - '0';
   delay(10);
+  myData.x_ver = Serial.read() - '0';
+  delay(10);
+  myData.y_ver = Serial.read() - '0';
+  delay(10);
+  control = Serial.read() - '0';
+  delay(10);
+  myData.pwm = Serial.read() - '0';
+  delay(10);
+  
   esp_now_send(broadcastAddress1, (uint8_t *) &myData, sizeof(myData));
   delay(500);
   }
