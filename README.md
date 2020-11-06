@@ -27,7 +27,7 @@ Previously, we introduced about how to control multiple WIFI-based control board
 
 The overall process flowchart:
 
-![](/pics/controller_flowchart.png)
+![](pics/controller_flowchart.png)
 
  The flowchart shows the step-by-step process, from the every beginning to the final control. 
 
@@ -64,6 +64,9 @@ There are 5 main programs that people should care about:
 
 ### 4.2 Software requirements: 
 
+- python 3
+  - If you don't have python 3 on your laptop, I will strongly recommend to install [Anaconda](https://docs.anaconda.com/anaconda/install/), it will make your life easier, especially for beginners. 
+
 - [Arduino IDE](https://www.arduino.cc/en/software)
 
 - pygame library
@@ -75,11 +78,19 @@ There are 5 main programs that people should care about:
     pip3 install pygame
     ```
 
+- pyserial library
+
+  - Use one of the following commands:
+
+    ```
+    pip install pyserial
+    ```
+
 ## 5 Wiring
 
 The wiring of this whole system is shown as follows:
 
-![](/pics/wiring.JPG)
+![](pics/wiring.JPG)
 
 ## 6 Process in details 
 
@@ -112,13 +123,13 @@ There are four main steps:
 
   - You'll see a window pup up like this:
 
-    ![](/pics/1.png)
+    ![](pics/1.png)
     
   - Now, press each buttons and joystick on your game controller at one time and notice the number change on the above windows.  
   
   - The normal XBox game controller should look like this:
   
-    ![](/pics/Xbox-360_controller.svg.png)
+    ![](pics/Xbox-360_controller.svg.png)
   
   - Now, try to match the buttons and its physical buttons using the following tables: (The values are the example of my controller)
   
