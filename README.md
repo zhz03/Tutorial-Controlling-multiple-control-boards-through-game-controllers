@@ -65,8 +65,9 @@ There are 5 main programs that people should care about:
 ### 4.2 Software requirements: 
 
 - python 3
-  - If you don't have python 3 on your laptop, I will strongly recommend to install [Anaconda](https://docs.anaconda.com/anaconda/install/), it will make your life easier, especially for beginners. 
-
+  
+- If you don't have python 3 on your laptop, I will strongly recommend to install [Anaconda](https://docs.anaconda.com/anaconda/install/), it will make your life easier, especially for beginners. 
+  
 - [Arduino IDE](https://www.arduino.cc/en/software)
 
 - pygame library
@@ -249,9 +250,13 @@ There are four main steps:
     serial_port = serial.Serial("COM9",115200)
     ```
 
-    For example, "COM9" to "COM20". To check the port name, go to Arduino IDE>Tools>Port: "COM20"
+    For example, "COM9" to "COM20". It depends on your laptop. In the ubuntu system, normally it should be something like "/dev/ttyUSB1"
+    
+    To check the port name, go to Arduino IDE>Tools>Port: "COM20"
 
 - Plug in game controller
+
+- Plug in your master board
 
 - Run *Joystick.py* in the terminal 
 
