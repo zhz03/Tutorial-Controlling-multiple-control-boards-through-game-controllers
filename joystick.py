@@ -5,7 +5,7 @@ pygame.init()
 pygame.joystick.init()
 done = False
 
-PORT = "COM9"
+PORT = "/dev/ttyUSB1"
 
 serial_port = serial.Serial(PORT,115200)
 serial_port.close()
@@ -30,19 +30,23 @@ while not done:
 	x_horizontal_curr = round(joystick.get_axis(0))
 	y_horizontal_curr = round(joystick.get_axis(1))
 
-	x_vertical_curr = round(0)
-	y_vertical_curr = round(0)
+	x_vertical_curr = round(joystick.get_axis(3))
+	y_vertical_curr = round(joystick.get_axis(4))
 
 	control_press_A = joystick.get_button(0)
 	control_press_B = joystick.get_button(1)
 	control_press_X = joystick.get_button(2)
 	control_press_Y = joystick.get_button(3)
 	control_val = control_press_A * 1 + control_press_B * 2 + control_press_X * 3 + control_press_Y * 4
-
-	PWM_L2_R2 = round(joystick.get_axis(2))
+        
+        
+	#PWM_L2_R2 = round(joystick.get_axis(2))
+	#if PWM_L2_R2 < 0:
+	#	PWM_L2_R2 = 0
 	PWM_L1 = joystick.get_button(4)
 	PWM_R1 = joystick.get_button(5)
-	PWM_val = 1 if PWM_L2_R2 < 0 else PWM_L2_R2 * 2 + PWM_L1 * 3 + PWM_R1 * 4
+	#PWM_val = PWM_L2_R2 * 1 + PWM_L1 * 3 + PWM_R1 * 4
+	PWM_val = PWM_L1 * 3 + PWM_R1 * 4
 
 	if x_horizontal != x_horizontal_curr or y_horizontal != y_horizontal_curr or x_vertical != x_vertical_curr or y_vertical != y_vertical_curr or (PWM_val != PWM and PWM_val != 0) or (control_val != 0 and control_val != control):
 		x_horizontal = x_horizontal_curr
