@@ -7,6 +7,7 @@ In the competition, your job is mainly to control blimps and together, as a team
 ## Content
 
 - [1 Prerequisite](#1-Prerequisite)
+- [2 Software setup](#2-Software-setup)
 - [3 Airship introduction](#3-Airship-introduction)
 - [4 Game controller introduction](#4-Game-controller-introduction)
 
