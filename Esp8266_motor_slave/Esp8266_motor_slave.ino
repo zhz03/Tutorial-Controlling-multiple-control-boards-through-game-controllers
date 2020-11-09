@@ -25,8 +25,7 @@ int d7   = 13;
 int d8   = 15;
 int d9 = 3;
 int d10 = 1;
-int SpeedH = 0;
-int SpeedV = 0;
+int Speed = 0;
 
 int x_1 = 0;
 int y_1 = 0;
@@ -101,34 +100,19 @@ if (myData.x_ver == 1 && myData.y_ver == 2)
   tail_up();
  }
 
- if(SpeedH != myData.pwm)
+ if(Speed != myData.pwm)
  {
-  Serial.println("Horizontal PWM Changed");
+  Serial.println("PWM Changed");
   Serial.println(myData.pwm);
-  SpeedH = myData.pwm;
-  if(SpeedH == 3)
+  Speed = myData.pwm;
+  if(Speed == 3)
   {
     analogWrite(d3,127);
   }
-  else if (SpeedH == 4)
+  else if (Speed == 4)
   {
     analogWrite(d3,255);  
   }
- }
-
- if(SpeedV != myData.pwm)
- {
-  Serial.println("Vertical PWM Changed");
-  Serial.println(myData.pwm);
-  SpeedV = myData.pwm;
-  if(SpeedV == 3)
-  {
-    analogWrite(d3,127);
-  }
-  else if (SpeedV == 4)
-  {
-    analogWrite(d3,255);  
-  }  
  }
 }
 
