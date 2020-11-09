@@ -47,6 +47,10 @@ Prerequisite is something you should finish before you show up on.
     git clone https://github.com/zhz03/Tutorial-Controlling-multiple-control-boards-through-game-controllers
     ```
 
+- Enter that directory: `cd Tutorial-Controlling-multiple-control-boards-through-game-controllers`
+
+- **For MacOS users**: `git checkout mac`
+
 ## 2 Software setup
 
 ### for MacOS users
@@ -59,11 +63,6 @@ Once installed, plug in the NodeMCU and check the port /dev/co.SLAB_USBtoUART ex
 Also install:
 
 https://github.com/360Controller/360Controller/releases/download/v1.0.0-alpha.6/360ControllerInstall_1.0.0-alpha.6.dmg
-
-### Step 4: Uploading the program to ESP8266 module
-
-The code will be provided and you can click on the right arrow shown in the figure to upload the program to the module. 
-![](https://content.instructables.com/ORIG/FTZ/VFL3/IMF3U0TL/FTZVFL3IMF3U0TL.jpg?auto=webp&frame=1&fit=bounds&md=73178573b9cde9b7df9194e8b1c5446a)
 
 ## 3 Airship introduction
 
