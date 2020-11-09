@@ -5,7 +5,7 @@ pygame.init()
 pygame.joystick.init()
 done = False
 
-PORT = "/dev/ttyUSB1"
+PORT = "/dev/cu.SLAB_USBtoUART"
 
 serial_port = serial.Serial(PORT,115200)
 serial_port.close()
