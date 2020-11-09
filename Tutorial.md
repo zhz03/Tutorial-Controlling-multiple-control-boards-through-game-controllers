@@ -23,14 +23,11 @@ Prerequisite is something you should finish before you show up on.
 
   - If you don't have python 3 on your laptop, I will strongly recommend to install [Anaconda](https://docs.anaconda.com/anaconda/install/), it will make your life easier, especially for beginners. 
 
-- [Arduino IDE](https://www.arduino.cc/en/software)
-
 - pygame library
 
   - Use one of the following commands:
 
     ```
-    pip install pygame 
     pip3 install pygame
     ```
 
@@ -39,7 +36,7 @@ Prerequisite is something you should finish before you show up on.
   - Use one of the following commands:
 
     ```
-    pip install pyserial
+    pip3 install pyserial
     ```
 
 - To use the code, please clone our git repo a head of time. We will continue to uploading our git, so please pull that latest update by tomorrow morning. 
@@ -52,33 +49,16 @@ Prerequisite is something you should finish before you show up on.
 
 ## 2 Software setup
 
-### Step 1: Installing Arduino IDE Software
-
-Install Arduino IDE software from the link http://www.arduino.cc/en/main/software
-
-### Step 2: Installing Arduino Core for NodeMCU ESP-12E Using Arduino Boards Manager
-
-- Start Arduino and open Preferences window
-- Enter http://arduino.esp8266.com/stable/package_esp8266com_index.json into Additional Board Manager URLs field. You can add multiple URLs separating them with commas.
-![](https://content.instructables.com/ORIG/FDV/1WRF/IMF3TZO9/FDV1WRFIMF3TZO9.jpg?auto=webp&frame=1&fit=bounds&md=2dfe6fde6714f26be7f06e42bdcdfbd9)
-- Open Boards Manager from Tools > Board menu and install _esp8266_ platform.
-- Select ESP8266 board from Tools > Board menu after installation.
-![](https://content.instructables.com/ORIG/FFS/FWV0/IMF3TZQ3/FFSFWV0IMF3TZQ3.jpg?auto=webp&frame=1&fit=bounds&md=aba8ceec6a280ebf81fdc64c147bb8fe)
-![](https://content.instructables.com/ORIG/FKP/T36T/IMF3TZVF/FKPT36TIMF3TZVF.jpg?auto=webp&frame=1&fit=bounds&md=abc63cb338450347c3a8679cb2485ecf)
-![](https://content.instructables.com/ORIG/F1F/8PAV/IMF3U001/F1F8PAVIMF3U001.jpg?auto=webp&frame=1&fit=bounds&md=660255e814d48e2b8ed02b635821ca70)
-
-### Step 3: Connectign NodeMCU to the PC
-
-![](https://content.instructables.com/ORIG/F41/QW7M/IMF3U080/F41QW7MIMF3U080.jpg?auto=webp&frame=1&width=1024&fit=bounds&md=167d277c58cec1b5edccd4332c1575ee)
-Now Let’s connect the ESP8266 module to your computer through USB cable as shown in the figure. When module is connected to the USB, COM port is detected eg: here COM5 is shown in the figure.
-![](https://content.instructables.com/ORIG/FE5/8PWW/IMF3U0L0/FE58PWWIMF3U0L0.jpg?auto=webp&frame=1&fit=bounds&md=7cd2f7d9794ffca45daa9f34a9517b71)
-
 ### for MacOS users
 
 Please down load the Mac drivers for NodeMCU ESP8266 using the link:
 [Silcon Labs CP210x USB to UART Bridge](https://www.silabs.com/products/development-tools/software/usb-to-uart-bridge-vcp-drivers)
 
-Once installed, plug in the NodeMCU and check the port /dev/tty.SLAB_USBtoUART exists.
+Once installed, plug in the NodeMCU and check the port /dev/co.SLAB_USBtoUART exists.
+
+Also install:
+
+https://github.com/360Controller/360Controller/releases/download/v1.0.0-alpha.6/360ControllerInstall_1.0.0-alpha.6.dmg
 
 ### Step 4: Uploading the program to ESP8266 module
 
