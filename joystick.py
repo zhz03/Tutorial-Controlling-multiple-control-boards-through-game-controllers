@@ -30,8 +30,8 @@ while not done:
 	x_horizontal_curr = round(joystick.get_axis(0))
 	y_horizontal_curr = round(joystick.get_axis(1))
 
-	x_vertical_curr = round(joystick.get_axis(3))
-	y_vertical_curr = round(joystick.get_axis(4))
+	x_vertical_curr = round(joystick.get_axis(2))
+	y_vertical_curr = round(joystick.get_axis(3))
 
 	control_press_A = joystick.get_button(0)
 	control_press_B = joystick.get_button(1)
@@ -43,8 +43,8 @@ while not done:
 	#PWM_L2_R2 = round(joystick.get_axis(2))
 	#if PWM_L2_R2 < 0:
 	#	PWM_L2_R2 = 0
-	PWM_L1 = joystick.get_button(4)
-	PWM_R1 = joystick.get_button(5)
+	PWM_L1 = joystick.get_button(9)
+	PWM_R1 = joystick.get_button(10)
 	#PWM_val = PWM_L2_R2 * 1 + PWM_L1 * 3 + PWM_R1 * 4
 	PWM_val = PWM_L1 * 3 + PWM_R1 * 4
 
