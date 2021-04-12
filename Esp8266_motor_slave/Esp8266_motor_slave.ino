@@ -1,14 +1,22 @@
 // 4 motors split 
 
 #include <ESP8266WiFi.h>
+#include <Servo.h>
 #include <espnow.h>
 
+
+// Servo Objects
+Servo servo_dir;
+Servo servo_cam;
+
+
 typedef struct struct_message {
-    int x_hor;
+  int x_hor;
   int y_hor;
   int x_ver;
   int y_ver;
   int pwm;
+  int cam_dir;
 
 } struct_message;
 
@@ -33,19 +41,21 @@ int y_1 = 0;
 
 void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
   memcpy(&myData, incomingData, sizeof(myData));
-//  Serial.print("Bytes received: ");
-//  Serial.println(len);
-//  Serial.print("x H: ");
-//  Serial.println(myData.x_hor);
-//  Serial.print("y H: ");
-//  Serial.println(myData.y_hor);
-//  Serial.print("x V: ");
-//  Serial.println(myData.x_ver);
-//  Serial.print("y V: ");
-//  Serial.println(myData.y_ver);
-//  Serial.print("PWM: ");
-//  Serial.println(myData.pwm);
-//  Serial.println();
+  Serial.print("Bytes received: ");
+  Serial.println(len);
+  Serial.print("x H: ");
+  Serial.println(myData.x_hor);
+  Serial.print("y H: ");
+  Serial.println(myData.y_hor);
+  Serial.print("x V: ");
+  Serial.println(myData.x_ver);
+  Serial.print("y V: ");
+  Serial.println(myData.y_ver);
+  Serial.print("PWM: ");
+  Serial.println(myData.pwm);
+  Serial.println();
+  Serial.print("Cam Dir : ");
+  Serial.println(myData.cam_dir);
 
  if (myData.x_hor == 1 && myData.y_hor == 2)
  {
@@ -74,30 +84,21 @@ void OnDataRecv(uint8_t * mac, uint8_t *incomingData, uint8_t len) {
  }
 
 
-if (myData.x_ver == 1 && myData.y_ver == 2)
+
+ if(myData.x_ver == 1)
  {
-  Serial.println("down");
-  down();
- }
- else if(myData.x_ver == 1 && myData.y_ver == 1)
- {
-  Serial.println("stop vertical");
+  Serial.println("stop_vert");
   stop_ver();
  }
- else if(myData.x_ver == 1 && myData.y_ver == 0)
+ else if(myData.x_ver == 0)
  {
   Serial.println("up");
   up();
  }
- else if(myData.x_ver == 0 && myData.y_ver == 1)
+ else if(myData.x_ver == 2)
  {
-  Serial.println("head up");
-  head_up();
- }
- else if(myData.x_ver == 2 && myData.y_ver == 1)
- {
-  Serial.println("tail up");
-  tail_up();
+  Serial.println("down");
+  down();
  }
 
  if(Speed != myData.pwm)
@@ -107,85 +108,112 @@ if (myData.x_ver == 1 && myData.y_ver == 2)
   Speed = myData.pwm;
   if(Speed == 3)
   {
-    analogWrite(d3,127);
+    analogWrite(d5,512);
+    analogWrite(d2,512);
   }
   else if (Speed == 4)
   {
-    analogWrite(d3,255);  
+    analogWrite(d5,1024);
+    analogWrite(d2,1024);  
   }
  }
+
+
+  if(myData.cam_dir == 4)
+  {
+    Serial.println("Center Camera");
+    servo_cam.write(85);
+    Serial.println(servo_cam.read());
+  }
+
+  else if(myData.cam_dir == 2)
+  {
+     Serial.println("Right Camera");
+     int old_val = servo_cam.read();
+     int new_val = old_val + 20;
+     servo_cam.write(new_val);
+     Serial.println(servo_cam.read());
+  }
+
+  else if(myData.cam_dir == 3)
+  {
+    Serial.println("Left Camera");
+    int old_val = servo_cam.read();
+    int new_val = old_val - 20;
+    servo_cam.write(new_val);
+    Serial.println(servo_cam.read());
+  }
+ 
 }
 
-void Horizontal_move(boolean a1,boolean a2,boolean b1,boolean b2){
-  digitalWrite(d5,a1);
-  digitalWrite(d6,a2);
-  digitalWrite(d7,b1);
-  digitalWrite(d8,b2);
+void Horizontal_move(boolean a1,boolean a2){
+  Serial.println("test hori");
+  digitalWrite(d3,a1);
+  digitalWrite(d4,a2);
 }
 
 void stopall(){
-  Horizontal_move(LOW,LOW,LOW,LOW);
+  servo_dir.write(90);
+  Horizontal_move(LOW,LOW);
 }
 
 void forward(){
-  Horizontal_move(LOW,HIGH,LOW,HIGH);
+  servo_dir.write(90);
+  Horizontal_move(HIGH,LOW);
 }
 
 void backward(){
-  Horizontal_move(HIGH,LOW,HIGH,LOW);
+  servo_dir.write(90);
+  Horizontal_move(LOW,HIGH);
 }
 
 void turn_right(){
-  Horizontal_move(LOW,HIGH,LOW,LOW);
+  servo_dir.write(20);
+  Horizontal_move(HIGH,LOW);
 }
 
 void turn_left(){
-  Horizontal_move(LOW,LOW,LOW,HIGH);
+  servo_dir.write(160);
+  Horizontal_move(HIGH,LOW);
 }
 
-void vertical_move(boolean a1,boolean a2,boolean b1, boolean b2){
-  digitalWrite(d9,a1);
-  digitalWrite(d10,a2);
-   digitalWrite(d0,b1);
-  digitalWrite(d4,b2);
+void vertical_move(boolean a1,boolean a2){
+  Serial.println("test vert");
+  digitalWrite(d0,a1);
+  digitalWrite(d1,a2);
 }
 
 void up(){
-  vertical_move(HIGH,LOW,HIGH,LOW);
+  vertical_move(HIGH,LOW);
 }
 void down(){
-  vertical_move(LOW,HIGH,LOW,HIGH);
+  vertical_move(LOW,HIGH);
 }
 
-void head_up(){
-  vertical_move(HIGH,LOW,LOW,LOW);
-}
-
-void tail_up(){
-  vertical_move(LOW,LOW,HIGH,LOW);
-}
 void stop_ver(){
-  vertical_move(LOW,LOW,LOW,LOW);
+  vertical_move(LOW,LOW);
 }
 
 void setup() {
   // put your setup code here, to run once:
  Serial.begin(115200); 
 
-  pinMode(d5,OUTPUT);  //AIN2
-  pinMode(d6,OUTPUT); // AIN1
-  pinMode(d7,OUTPUT); //BIN2
-  pinMode(d8,OUTPUT); // BIN1
+  pinMode(d0,OUTPUT);  //AIN1
+  pinMode(d1,OUTPUT);  //AIN2
+  pinMode(d2,OUTPUT);  //PWM
+  pinMode(d3,OUTPUT);  //AIN2
+  pinMode(d4,OUTPUT);  //AIN1
+  pinMode(d5,OUTPUT);  //PWM
 
-  pinMode(d9,FUNCTION_3);
-  pinMode(d10,FUNCTION_3);
-  pinMode(d9,OUTPUT); // AIN2
-  pinMode(d10,OUTPUT); //AIN1
 
-  pinMode(d3,OUTPUT); // pwm
+  // Servo
+  servo_dir.attach(d7);
+  servo_dir.write(90);
+  delay(2000);
 
-  pinMode(d0,OUTPUT); //BIN2
-  pinMode(d4,OUTPUT); //BIN1
+  servo_cam.attach(d6);
+  servo_cam.write(90);
+  delay(2000);
 
   WiFi.mode(WIFI_STA);
   WiFi.disconnect();

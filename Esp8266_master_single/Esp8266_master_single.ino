@@ -3,10 +3,9 @@
 #include <espnow.h>
 
 // REPLACE WITH RECEIVER MAC Address
-uint8_t broadcastAddress1[] = {0x40, 0xF5, 0x20, 0x0A, 0x8A, 0x82};
+uint8_t broadcastAddress1[] = {0x40, 0xF5, 0x20, 0x28, 0xD3, 0x84};
 
-// Control State
-int control;
+
 
 // Structure example to send data
 // Must match the receiver structure
@@ -16,6 +15,7 @@ typedef struct struct_message {
   int x_ver;
   int y_ver;
   int pwm;
+  int cam_dir;
 } struct_message;
 
 // Create a struct_message called test to store variables to be sent
@@ -68,15 +68,37 @@ void setup() {
 void loop() {
   if (Serial.available() > 0)
   {
+
   myData.x_hor = Serial.read() - '0';
   delay(10);
+  myData.x_hor = (myData.x_hor * 10) + Serial.read() - '0';
+  delay(10);
+//  myData.x_hor = (myData.x_hor * 10) + Serial.read() - '0';
+//  delay(10);
+
   myData.y_hor = Serial.read() - '0';
   delay(10);
+  myData.y_hor = (myData.y_hor * 10) + Serial.read() - '0';
+  delay(10);
+//  myData.y_hor = (myData.y_hor * 10) + Serial.read() - '0';
+//  delay(10);
+
   myData.x_ver = Serial.read() - '0';
   delay(10);
+  myData.x_ver = (myData.x_ver * 10) + Serial.read() - '0';
+  delay(10);
+//  myData.x_ver = (myData.x_ver * 10) + Serial.read() - '0';
+//  delay(10);
+
   myData.y_ver = Serial.read() - '0';
   delay(10);
-  control = Serial.read() - '0';
+  myData.y_ver = (myData.y_ver * 10) + Serial.read() - '0';
+  delay(10);
+//  myData.y_ver = (myData.y_ver * 10) + Serial.read() - '0';
+//  delay(10);
+
+
+  myData.cam_dir = Serial.read() - '0';
   delay(10);
   myData.pwm = Serial.read() - '0';
   delay(10);
